@@ -34,8 +34,18 @@ class FollowMeUserGenerator(object):
 
     def format_row(self, row):
         section = row.user_id
-        mobilephonenumber = row.UserSIP.line.users[0].mobilephonenumber
-        ringseconds = row.UserSIP.line.users[0].ringseconds
+        mobilephonenumber = None
+        ringseconds = None
+
+        try:
+            mobilephonenumber = row.UserSIP.line.users[0].mobilephonenumber
+        except:
+            pass
+
+        try:
+            ringseconds = row.UserSIP.line.users[0].ringseconds
+        except:
+            pass
 
         if mobilephonenumber and section not in self.user_uuid:
             yield '[{}]'.format(section)
