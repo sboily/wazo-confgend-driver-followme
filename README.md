@@ -9,4 +9,4 @@ Clone the repo and install it.
 
     make install
 
-Please add on your user a phone mobile number.
+Please add to your user a phone mobile number.
