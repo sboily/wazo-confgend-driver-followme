@@ -43,7 +43,7 @@ class FollowMeUserGenerator(object):
             pass
 
         try:
-            ringseconds = row.UserSIP.line.users[0].ringseconds
+            ringseconds = row.UserSIP.line.users[0].ringseconds * 2
         except:
             pass
 
