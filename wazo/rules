@@ -25,6 +25,7 @@ case "$1" in
 
     uninstall)
         sed -i '/\(^;noload.*followme.so\)/s/^;//' /etc/asterisk/modules.conf
+        rm -f /var/lib/xivo-confgend/asterisk/followme.conf
         systemctl restart xivo-confgend
         systemctl restart asterisk
         systemctl restart xivo-ctid
