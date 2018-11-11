@@ -3,10 +3,11 @@ Confgend driver for Followme
 
 This plugin add a followme driver to xivo-confgend.
 
-WARNING: Use wazo >= 17.01.
+WARNING: Use wazo >= 18.03.
 
-Clone the repo and install it.
+To install this plugin:
 
-    make install
+    apt install wazo-plugin-cli
+    wazo-plugind-cli -c 'install git https://github.com/sboily/wazo-confgend-driver-followme'
 
-Please add to your user a phone mobile number.
+Please add to your user a phone mobile number to have the follow working.

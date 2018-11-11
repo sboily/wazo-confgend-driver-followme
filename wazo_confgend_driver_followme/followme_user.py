@@ -29,7 +29,7 @@ class FollowMeUserGenerator(object):
 
     def generate(self):
         for row in self.dao.find_sip_user_settings():
-            for line in self.format_row(row):
+            for line in self.format_row(row[0]):
                 yield line
 
     def format_row(self, row):
