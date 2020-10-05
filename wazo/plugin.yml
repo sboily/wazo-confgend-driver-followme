@@ -1,9 +1,8 @@
 name: confgend-driver-followme
 namespace: sboily
-version: 0.0.2
+version: 0.0.3
 author: Sylvain Boily
 display_name: Followme
 tags:
-  - beta
   - application
 homepage: https://github.com/sboily/wazo-confgend-driver-followme

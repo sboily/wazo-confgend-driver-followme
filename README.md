@@ -1,9 +1,9 @@
 Confgend driver for Followme
 ============================
 
-This plugin add a followme driver to xivo-confgend.
+This plugin add a followme driver to wazo-confgend.
 
-WARNING: Use wazo >= 18.03.
+WARNING: Use wazo >= 20.13.
 
 To install this plugin:
 
