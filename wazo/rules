@@ -18,17 +18,15 @@ case "$1" in
 	chown asterisk.www-data /etc/asterisk/extensions_extra.d/followme.conf
 	chmod 660 /etc/asterisk/extensions_extra.d/followme.conf
 	sed -i '/\(^noload.*followme.so\)/s/^/;/' /etc/asterisk/modules.conf
-	systemctl restart xivo-confgend
+	systemctl restart wazo-confgend
 	systemctl restart asterisk
-        systemctl restart xivo-ctid
         ;;
 
     uninstall)
         sed -i '/\(^;noload.*followme.so\)/s/^;//' /etc/asterisk/modules.conf
-        rm -f /var/lib/xivo-confgend/asterisk/followme.conf
-        systemctl restart xivo-confgend
+        rm -f /var/lib/wazo-confgend/asterisk/followme.conf
+        systemctl restart wazo-confgend
         systemctl restart asterisk
-        systemctl restart xivo-ctid
         ;;
 
     *)
