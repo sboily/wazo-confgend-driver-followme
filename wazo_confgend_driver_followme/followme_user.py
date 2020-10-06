@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-# Copyright (C) 2017 Sylvain Boily
+# Copyright (C) 2017-2020 Sylvain Boily
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,24 +28,20 @@ class FollowMeUserGenerator(object):
         self.user_uuid = []
 
     def generate(self):
-        for row in self.dao.find_sip_user_settings():
-            for line in self.format_row(row[0]):
+        for row in self.dao.find_all_by():
+            for line in self.format_row(row):
                 yield line
 
     def format_row(self, row):
-        section = row.user_id
+        section = row.uuid
         mobilephonenumber = None
         ringseconds = None
 
-        try:
-            mobilephonenumber = row.UserSIP.line.users[0].mobilephonenumber
-        except:
-            pass
+        if hasattr(row, 'mobilephonenumber'):
+            mobilephonenumber = row.mobilephonenumber
 
-        try:
-            ringseconds = row.UserSIP.line.users[0].ringseconds * 2
-        except:
-            pass
+        if hasattr(row, 'ringseconds'):
+            ringseconds = row.ringseconds * 2
 
         if mobilephonenumber and section not in self.user_uuid:
             yield '[{}]'.format(section)
@@ -55,9 +51,10 @@ class FollowMeUserGenerator(object):
             yield ''
 
     def format_user_options(self, row, mobilephonenumber, ringseconds):
-        if row.mohsuggest:
-            yield 'music = {}'.format(row.mohsuggest)
-        if row.context:
-            yield 'context = {}'.format(row.context)
+        if hasattr(row, 'musiconhold'):
+            if row.musiconhold:
+                yield 'musicclass = {}'.format(row.musiconhold)
+        if hasattr(row, 'lines'):
+            yield 'context = {}'.format(row.lines[0].context)
         if mobilephonenumber:
             yield 'number = {},{}'.format(mobilephonenumber, ringseconds)

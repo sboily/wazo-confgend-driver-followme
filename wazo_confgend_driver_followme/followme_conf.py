@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2017 Sylvain Boily
+# Copyright (C) 2017-2020 Sylvain Boily
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,18 +18,18 @@
 from StringIO import StringIO
 
 from xivo_dao.helpers.db_utils import session_scope
-from xivo_dao import asterisk_conf_dao
+from xivo_dao.resources.user import dao as user_dao
 
 from wazo_confgend_driver_followme.followme_user import FollowMeUserGenerator
 
 
 class FollowMeConfGenerator(object):
 
-    def __init__(self, config):
-        self._config = config
+    def __init__(self, dependencies):
+        self.dependencies = dependencies
 
     def generate(self):
-        user_generator = FollowMeUserGenerator(asterisk_conf_dao)
+        user_generator = FollowMeUserGenerator(user_dao)
         config_generator = FollowMeConf(user_generator)
         output = StringIO()
         config_generator.generate(output)
