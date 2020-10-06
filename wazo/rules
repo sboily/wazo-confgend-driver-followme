@@ -8,7 +8,7 @@ case "$1" in
         ;;
 
     package)
-        tar xvf dist/wazo-confgend-driver-followme-*.tar.gz -C ${pkgdir}
+        tar xvf dist/confgend-driver-followme-*.tar.gz -C ${pkgdir}
         cp -R etc ${pkgdir}/
         ;;
 
