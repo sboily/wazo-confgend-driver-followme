@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright 2017 Sylvain Boily
+# Copyright 2017-2020 Sylvain Boily
 # SPDX-License-Identifier: GPL-3.0+
 
 case "$1" in
@@ -14,16 +14,14 @@ case "$1" in
 
     install)
 	chown asterisk.www-data /etc/asterisk/followme.conf
-	chmod 660 /etc/asterisk/followme.conf
 	chown asterisk.www-data /etc/asterisk/extensions_extra.d/followme.conf
+	chmod 660 /etc/asterisk/followme.conf
 	chmod 660 /etc/asterisk/extensions_extra.d/followme.conf
-	sed -i '/\(^noload.*followme.so\)/s/^/;/' /etc/asterisk/modules.conf
 	systemctl restart wazo-confgend
 	systemctl restart asterisk
         ;;
 
     uninstall)
-        sed -i '/\(^;noload.*followme.so\)/s/^;//' /etc/asterisk/modules.conf
         rm -f /var/lib/wazo-confgend/asterisk/followme.conf
         systemctl restart wazo-confgend
         systemctl restart asterisk

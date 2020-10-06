@@ -1,2 +1,4 @@
 plugins:
   asterisk.followme.conf: wazo
+enabled_asterisk_modules:
+  app_followme.so: true
